@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Orden del Segundo Sol</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:#050505;
+color:#d8b05d;
+font-family:Georgia,serif;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+}
+
+body::before{
+content:"";
+position:fixed;
+width:200%;
+height:200%;
+background:
+radial-gradient(circle,#d8b05d22 1px,transparent 1px);
+background-size:60px 60px;
+animation:mover 35s linear infinite;
+opacity:.25;
+}
+
+@keyframes mover{
+from{transform:translate(0,0);}
+to{transform:translate(-120px,-120px);}
+}
+
+.panel{
+position:relative;
+z-index:10;
+width:430px;
+padding:35px;
+background:#111;
+border:2px solid #b8860b;
+border-radius:15px;
+box-shadow:0 0 30px rgba(255,180,0,.25);
+text-align:center;
+}
+
+.simbolo{
+font-size:70px;
+margin-bottom:15px;
+animation:latido 2s infinite;
+}
+
+@keyframes latido{
+50%{
+transform:scale(1.08);
+}
+}
+
+h1{
+letter-spacing:3px;
+margin-bottom:10px;
+}
+
+h2{
+letter-spacing:2px;
+}
+
+p{
+margin-top:10px;
+margin-bottom:15px;
+}
+
+input{
+width:100%;
+padding:12px;
+font-size:18px;
+text-align:center;
+background:#222;
+border:1px solid #b8860b;
+color:white;
+border-radius:8px;
+outline:none;
+}
+
+button{
+margin-top:20px;
+width:100%;
+padding:12px;
+font-size:18px;
+background:#b8860b;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+transition:.3s;
+}
+
+button:hover{
+background:#d4a017;
+}
+
+#error{
+margin-top:15px;
+color:#ff5555;
+min-height:20px;
+}
+
+#escaneo,#acceso{
+display:none;
+}
+
+.barra{
+margin-top:25px;
+width:100%;
+height:14px;
+background:#222;
+border-radius:20px;
+overflow:hidden;
+}
+
+.progreso{
+width:0%;
+height:100%;
+background:#d8b05d;
+animation:cargar 3s forwards;
+}
+
+@keyframes cargar{
+to{
+width:100%;
+}
+}
+
+audio{
+width:100%;
+margin-top:30px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="panel">
+
+<div id="login">
+
+<div class="simbolo">☀</div>
+
+<h1>ORDEN DEL SEGUNDO SOL</h1>
+
+<p>Archivo clasificado</p>
+
+<input id="clave"
+type="password"
+placeholder="Palabra sagrada">
+
+<button onclick="entrar()">
+ACCEDER
+</button>
+
+<div id="error"></div>
+
+</div>
+
+<div id="escaneo">
+
+<div class="simbolo">☀</div>
+
+<h2>VERIFICANDO CREDENCIALES...</h2>
+
+<div class="barra">
+<div class="progreso"></div>
+</div>
+
+<p style="margin-top:20px;">
+Consejo Solar verificando identidad...
+</p>
+
+</div>
+
+<div id="acceso">
+
+<div class="simbolo">☀</div>
+
+<h2>ACCESO AUTORIZADO</h2>
+
+<audio controls autoplay id="audio">
+<source src="mensaje.mp3" type="audio/mpeg">
+Tu navegador no soporta audio.
+</audio>
+
+</div>
+
+</div>
+
+<script>
+
+const contraseña="AURORA";
+
+function entrar(){
+
+let clave=document.getElementById("clave").value;
+
+if(clave.toUpperCase()==contraseña){
+
+document.getElementById("login").style.display="none";
+
+document.getElementById("escaneo").style.display="block";
+
+setTimeout(function(){
+
+document.getElementById("escaneo").style.display="none";
+
+document.getElementById("acceso").style.display="block";
+
+document.getElementById("audio").play();
+
+},3000);
+
+}else{
+
+document.getElementById("error").innerHTML="Palabra sagrada incorrecta.";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
